@@ -270,7 +270,7 @@ class MysticMayhemGame {
 	        System.out.println("2)Create a profile");
 	        System.out.println("3)Exit");
 	        System.out.println("\nPlease select a menu option");
-	        break;
+	        break;//to be created
 		}
 	}
     public static void main(String[] args) {
