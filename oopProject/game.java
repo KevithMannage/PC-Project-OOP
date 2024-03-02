@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 abstract class Equipment {
 	//all attributes are private
@@ -80,7 +81,7 @@ abstract class Character {
     private int price;
     private int attack;
     private int defence;
-    private int health;
+	private int health;
     private int speed;
     private Armour armour;
     private Artefact artifact;
@@ -109,6 +110,52 @@ abstract class Character {
         this.speed += artifact.getSpeedModifier();
     }
     
+    public String getName() {
+		return name;
+	}
+	public int getPrice() {
+		return price;
+	}
+
+	public int getAttack() {
+		return attack;
+	}
+
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+	public int getDefence() {
+		return defence;
+	}
+
+	public void setDefence(int defence) {
+		this.defence = defence;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public Armour getArmour() {
+		return armour;
+	}
+
+	public Artefact getArtifact() {
+		return artifact;
+	}
     @Override
     public String toString() {
         return "Character{" +
@@ -125,10 +172,12 @@ abstract class Character {
 }
 
 class Player {
+	// name, goldCoins are read and write
+	// username, userID are read only
     private String name;
-    private String username;
+	private String username;
     private int userID;
-    private int goldCoins;
+	private int goldCoins;
     private Map<String, Character> army;
 
     public Player(String name, String username, int userID) {
@@ -138,13 +187,30 @@ class Player {
         this.goldCoins = 500;
         this.army = new HashMap<>();
     }
-
-    public void addGoldCoins(int coins) {
+    public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public int getUserID() {
+		return userID;
+	}
+	public int getGoldCoins() {
+		return goldCoins;
+	}
+    public void recieveGoldCoins(int coins) {
         this.goldCoins += coins;
+    }
+    public void spendGoldCoins(int coins) {
+        this.goldCoins -= coins;
     }
 
     public void displayArmy() {
-        System.out.println("Player's Army:");
+        System.out.println(name + "'s Army:");
         for (Character character : army.values()) {
             System.out.println(character);
         }
@@ -197,10 +263,18 @@ class Excalibur extends Artefact { public Excalibur() { super("Excalibur", 150, 
 class Crystal extends Artefact { public Crystal() { super("Crystal", 210, 2, 1, -1, -1); } }
 
 class MysticMayhemGame {
+	public static void mainMenu() {
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("1)Login");
+	        System.out.println("2)Create a profile");
+	        System.out.println("3)Exit");
+	        System.out.println("\nPlease select a menu option");
+	        break;
+		}
+	}
     public static void main(String[] args) {
-        // Sample usage
-        Player player1 = new Player("Player1", "user1", 1);
-        Player player2 = new Player("Player2", "user2", 2);
+        System.out.println("----------------\n| Mystic Mayhem |\n----------------\n");
+        mainMenu();
     }
-
 }
